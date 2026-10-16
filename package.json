@@ -1,0 +1,12 @@
+{
+  "name": "tripfund-homework-2",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Solidity / Foundry homework: TripFund + Transparent Proxy V2 bonus",
+  "devDependencies": {
+    "@openzeppelin/upgrades-core": "1.46.0"
+  },
+  "scripts": {
+    "validate:upgrade": "openzeppelin-upgrades-core validate out/build-info --contract TripFundV2 --reference TripFund"
+  }
+}
