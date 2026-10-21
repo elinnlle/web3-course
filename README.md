@@ -2,7 +2,7 @@
 
 Домашнее задание по Solidity. Подготовлена реализация базовых требований **TripFund** (до 10 баллов) и бонуса **V2 / Transparent Proxy / проверка совместимости OpenZeppelin Upgrades** (до 3 дополнительных баллов). Итоговая оценка зависит от успешного запуска тестов и проверки преподавателем.
 
-> **Проверено локально 16.10.2026:** `bash scripts/setup.sh` завершён с кодом 0. `forge build --force` — успешно; `forge test --force -vv` — **30 passed, 0 failed, 0 skipped**, fuzz: 256 прогонов; `npm run validate:upgrade` — **SUCCESS**, совместимость `TripFund → TripFundV2` подтверждена. Проверены пункты 1–12 исходного PDF. Подробности, версии и ограничения — в `REVIEW_REPORT.md`. GitHub Actions ещё не запускался: проект не опубликован.
+> **Повторно проверено 21.10.2026 в свежем локальном клоне со всеми сабмодулями:** `bash scripts/setup.sh` завершён с кодом 0. `forge build --force` — успешно; `forge test --force -vv` — **30 passed, 0 failed, 0 skipped**, fuzz: 256 прогонов; `npm run validate:upgrade` — **SUCCESS**, совместимость `TripFund → TripFundV2` подтверждена. Проверены пункты 1–12 исходного PDF. Подробности, версии и ограничения — в `REVIEW_REPORT.md`. GitHub Actions ещё не запускался: проект не опубликован.
 
 ## 1. Требования и версии
 
@@ -35,6 +35,18 @@ forge build --force
 forge test --force -vv
 npm run validate:upgrade
 ```
+
+### Проверка после свежего клонирования
+
+После публикации замените `<GITHUB_REPO_URL>` на URL этого репозитория:
+
+```bash
+git clone --recurse-submodules <GITHUB_REPO_URL> TripFund
+cd TripFund
+bash scripts/setup.sh
+```
+
+Если клонирование выполнено без `--recurse-submodules`, `setup.sh` сам восстановит все сабмодули. Их версии закреплены commit SHA в Git, npm-пакеты — в `package-lock.json`. Нужны только Git, Foundry v1.8.5 и Node.js 20+ с npm; RPC, кошелёк, приватный ключ и `.env` для проверок не требуются.
 
 Для повторного запуска без переустановки зависимостей:
 
@@ -130,18 +142,21 @@ trip.contribute(250);
 
 ## 7. Сдача через GitHub
 
-Когда **все три** проверки (`forge build`, `forge test`, `npm run validate:upgrade`) завершатся успешно, опубликуйте проект:
+Проект подготовлен локально; публикация выполняется только после подтверждения владельца.
+
+1. Создайте **пустой публичный** репозиторий `TripFund-Homework-2` в своём GitHub (без автоматически созданных README, лицензии и `.gitignore`). Если репозиторий будет приватным, предоставьте преподавателю доступ.
+2. Убедитесь, что все изменения закоммичены: `git status --short` должен быть пустым.
+3. Укажите URL созданного репозитория и отправьте подготовленную ветку:
 
 ```bash
-git add .
-git commit -m "Implement TripFund and proxy upgrade bonus"
-# Создайте ПУСТОЙ репозиторий в GitHub и скопируйте его URL:
-git branch -M main
 git remote add origin <GITHUB_REPO_URL>
 git push -u origin main
 ```
 
-Проверьте, что в коммит добавлены `.gitmodules` и записи сабмодулей из `lib/`, созданные командой `forge install`. Тогда `git submodule update --init --recursive` сможет установить их на другом компьютере. Не загружайте `node_modules`, `out`, `cache`, приватные ключи и `.env`. Преподавателю сдайте **ссылку на GitHub-репозиторий** — именно так указано в задании.
+4. В **Actions** дождитесь зелёного workflow **Solidity checks (base + proxy V2 bonus)** для отправленного коммита. Он запускается при push, pull request и вручную; выполняет сборку, тесты и `validate:upgrade`. Любая ошибка останавливает workflow.
+5. Преподавателю сдайте **ссылку на GitHub-репозиторий**. Дополнительно можно приложить ссылку на успешный запуск Actions; карта пунктов 1–12 находится в `REVIEW_REPORT.md`.
+
+В Git должны находиться `.gitmodules`, три записи сабмодулей `lib/`, `package-lock.json`, контракты, тесты, настройки, скрипты и документация. `node_modules`, `out`, `cache`, логи, локальные `.env.*`, файлы ключей и keystore исключены через `.gitignore`. Игнорирование не удаляет уже отслеживаемые файлы: перед публикацией проверяйте `git diff --cached` и не добавляйте секреты даже в `.env.example`.
 
 ## 8. Что важно перед реальной эксплуатацией
 
