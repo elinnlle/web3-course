@@ -1,0 +1,44 @@
+name: HW02 TripFund (build, tests, V1 to V2)
+
+on:
+  push:
+    paths:
+      - 'homeworks/hw02-tripfund/**'
+      - '.github/workflows/hw02-tripfund.yml'
+      - '.gitmodules'
+      - '.gitignore'
+      - 'Makefile'
+  pull_request:
+    paths:
+      - 'homeworks/hw02-tripfund/**'
+      - '.github/workflows/hw02-tripfund.yml'
+      - '.gitmodules'
+      - '.gitignore'
+      - 'Makefile'
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: homeworks/hw02-tripfund
+    steps:
+      # setup.sh restores only this homework's submodules recursively.
+      - name: Checkout course
+        uses: actions/checkout@v4
+
+      - name: Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: v1.8.5
+
+      - name: Install and verify HW02, including OpenZeppelin storage checks
+        run: bash scripts/setup.sh
