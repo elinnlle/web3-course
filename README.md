@@ -38,6 +38,8 @@ bash scripts/check.sh  # повторные проверки
 
 Можно также клонировать все сабмодули курса сразу: `git clone --recurse-submodules <URL_РЕПОЗИТОРИЯ_WEB3_COURSE> web3-course`. ZIP-архив без Git-метаданных не поддерживается скриптом установки: используйте `git clone`.
 
+**Проверено 21.10.2026 в свежем клоне:** `make hw02-setup` — код 0; сборка успешна, 30 тестов пройдены (256 fuzz-прогонов), OpenZeppelin V1 → V2 — SUCCESS. [Подробный отчёт](homeworks/hw02-tripfund/REVIEW_REPORT.md).
+
 ## Организация
 
 ```text
