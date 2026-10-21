@@ -13,7 +13,7 @@
 Нужны Git, Foundry **v1.8.5**, Node.js **20+** и npm. Для первой установки нужен интернет. RPC, кошелёк, приватные ключи и `.env` не требуются.
 
 ```bash
-git clone <URL_РЕПОЗИТОРИЯ_WEB3_COURSE> web3-course
+git clone https://github.com/elinnlle/web3-course.git web3-course
 cd web3-course
 make hw02-setup
 ```
@@ -36,7 +36,7 @@ bash scripts/setup.sh  # зависимости и все проверки
 bash scripts/check.sh  # повторные проверки
 ```
 
-Можно также клонировать все сабмодули курса сразу: `git clone --recurse-submodules <URL_РЕПОЗИТОРИЯ_WEB3_COURSE> web3-course`. ZIP-архив без Git-метаданных не поддерживается скриптом установки: используйте `git clone`.
+Можно также клонировать все сабмодули курса сразу: `git clone --recurse-submodules https://github.com/elinnlle/web3-course.git web3-course`. ZIP-архив без Git-метаданных не поддерживается скриптом установки: используйте `git clone`.
 
 **Проверено 21.10.2026 в свежем клоне:** `make hw02-setup` — код 0; сборка успешна, 30 тестов пройдены (256 fuzz-прогонов), OpenZeppelin V1 → V2 — SUCCESS. [Подробный отчёт](homeworks/hw02-tripfund/REVIEW_REPORT.md).
 
@@ -70,14 +70,7 @@ web3-course/
 
 Преподавателю удобно передать ссылку непосредственно на **`homeworks/hw02-tripfund/`** в GitHub, дополнительно — ссылку на успешный запуск **HW02 TripFund (build, tests, V1 to V2)**. Подробные требования, примеры и карта пунктов 1–12 находятся внутри работы.
 
-Для первой публикации после подтверждения владельца создайте пустой публичный GitHub-репозиторий **`web3-course`**, затем:
-
-```bash
-git remote add origin <URL_РЕПОЗИТОРИЯ_WEB3_COURSE>
-git push -u origin main
-```
-
-После push дождитесь зелёного Actions для отправленного коммита. До публикации фактический прогон на GitHub не подтверждён.
+Актуальный статус автоматических проверок: [GitHub Actions](https://github.com/elinnlle/web3-course/actions/workflows/hw02-tripfund.yml).
 
 ## Следующие домашние работы
 

@@ -4,7 +4,7 @@
 
 Домашнее задание по Solidity. Подготовлена реализация базовых требований **TripFund** (до 10 баллов) и бонуса **V2 / Transparent Proxy / проверка совместимости OpenZeppelin Upgrades** (до 3 дополнительных баллов). Итоговая оценка зависит от успешного запуска тестов и проверки преподавателем.
 
-> **Проверено 21.10.2026 после переноса:** свежий клон общего репозитория → `make hw02-setup` из корня → успешная сборка, **30 passed / 0 failed / 0 skipped**, fuzz **256 runs**, OpenZeppelin V1 → V2 **SUCCESS**. Подробности — в `REVIEW_REPORT.md`. GitHub Actions ещё не запускался: репозиторий не опубликован.
+> **Проверено 21.10.2026 после переноса:** свежий клон общего репозитория → `make hw02-setup` из корня → успешная сборка, **30 passed / 0 failed / 0 skipped**, fuzz **256 runs**, OpenZeppelin V1 → V2 **SUCCESS**. Подробности — в `REVIEW_REPORT.md`. Актуальный статус CI: [GitHub Actions](https://github.com/elinnlle/web3-course/actions/workflows/hw02-tripfund.yml).
 
 ## 1. Требования и версии
 
@@ -40,10 +40,10 @@ npm run validate:upgrade
 
 ### Проверка после свежего клонирования
 
-После публикации замените `<URL_РЕПОЗИТОРИЯ_WEB3_COURSE>` на URL общего репозитория:
+Клонирование общего репозитория и запуск этой домашней работы:
 
 ```bash
-git clone <URL_РЕПОЗИТОРИЯ_WEB3_COURSE> web3-course
+git clone https://github.com/elinnlle/web3-course.git web3-course
 cd web3-course/homeworks/hw02-tripfund
 bash scripts/setup.sh
 ```
@@ -146,9 +146,9 @@ trip.contribute(250);
 
 ## 7. Сдача через GitHub
 
-Домашняя работа публикуется **в составе общего репозитория `web3-course`**, а не как отдельный Git-репозиторий. Команды первой публикации находятся в [корневом README](../../README.md#проверки-и-сдача); выполняйте их из корня курса после подтверждения владельца.
+Домашняя работа публикуется **в составе общего репозитория `web3-course`**, а не как отдельный Git-репозиторий. Навигация по курсу и порядок сдачи находятся в [корневом README](../../README.md#проверки-и-сдача).
 
-Преподавателю передайте ссылку вида `https://github.com/<владелец>/web3-course/tree/main/homeworks/hw02-tripfund` и, при необходимости, ссылку на зелёный запуск **HW02 TripFund (build, tests, V1 to V2)**. Карта требований 1–12 находится в [REVIEW_REPORT.md](REVIEW_REPORT.md).
+Преподавателю передайте ссылку вида `https://github.com/elinnlle/web3-course/tree/main/homeworks/hw02-tripfund` и, при необходимости, ссылку на зелёный запуск **HW02 TripFund (build, tests, V1 to V2)**. Карта требований 1–12 находится в [REVIEW_REPORT.md](REVIEW_REPORT.md).
 
 Сабмодули, lock-файл, контракты, тесты и настройки включены в общий Git-репозиторий. `node_modules`, `out`, `cache`, логи, ключи и `.env.*` исключаются корневым `.gitignore` также во вложенных папках.
 
